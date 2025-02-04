@@ -19,14 +19,17 @@ export default function Home() {
     setPosts(postResponse);
   }
 
+  const removeUser = (itemId) => {
+    setUsers((prevUser) => prevUser.filter((user) => user.id !== itemId));
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <div className="p-5">
-      <h2 className="text-2xl font-bold mb-4">Kullanıcı Listesi</h2>
-      <UsersList users={users} posts={posts} />
+      <UsersList users={users} posts={posts} removeUser={removeUser} />
     </div>
   );
 }
